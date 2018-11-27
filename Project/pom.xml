@@ -39,7 +39,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        hibernate.Manager
+                                        hibernate.queries.Manager
                                     </mainClass>
                                 </manifest>
                             </archive>

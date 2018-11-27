@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ANIMALS")
-public class Animals {
+public class Animal {
 
     @Id
     @GeneratedValue
@@ -28,7 +28,7 @@ public class Animals {
     private boolean is_adopted;
 
 
-    public Animals() {}
+    public Animal() {}
 
     public int getId() {
         return id;
@@ -72,4 +72,5 @@ public class Animals {
 
 
 
+}
 
