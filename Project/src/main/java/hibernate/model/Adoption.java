@@ -12,16 +12,16 @@ public class Adoption {
 
     @Id
     @GeneratedValue
-    @Column(name = "adoption number")
+    @Column(name = "adoption_number")
     private int numberOfAdoption;
 
-    @Column (name = "adoption data")
+    @Column (name = "adoption_data")
     private char dataOfAdoption;
 
-    @Column (name = "client id")
+    @Column (name = "client_id")
     private int idclient;
 
-    @Column(name="animal id")
+    @Column(name="animal_id")
     private int idanimal;
 
     public int getNumberOfAdoption() {return numberOfAdoption;}

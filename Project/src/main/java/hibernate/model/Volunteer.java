@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "VOLUNTEERS")
@@ -25,6 +26,13 @@ public class Volunteer {
 
     @Column(name = "pupil")
     private int idPupil;
+
+    @OneToMany (mappedBy="idPupil")
+    private List<Animal> animals;
+
+    public Volunteer(List<Animal> animals) {
+        this.animals = animals;
+    }
 
     public int getId() {return id;}
 

@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "ANIMALS")
@@ -27,8 +28,23 @@ public class Animal {
     @Column(name="is_adopted")
     private boolean is_adopted;
 
+  /*  @OneToOne (mappedBy="ANIMALS")
+    private List<Client> client;
+*/
+    @ManyToOne (fetch=FetchType.LAZY)
+    @JoinColumn(name="id")
+    private Volunteer idPupil;
 
-    public Animal() {}
+
+    @OneToMany (mappedBy="vacc")
+    private List<Vaccination> vaccinations;
+
+
+
+    public Animal(Volunteer idPupil, List<Vaccination> vaccinations) {
+        this.idPupil = idPupil;
+        this.vaccinations = vaccinations;
+    }
 
     public int getId() {
         return id;

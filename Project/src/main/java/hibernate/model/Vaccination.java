@@ -15,14 +15,23 @@ public class Vaccination {
     @Column(name = "id")
     private int idvaccination;
 
-    @Column(name = "vaccination name")
+    @Column(name = "vaccination_name")
     private String namevaccinaiton;
 
-    @Column(name = "id of animal")
+    @Column(name = "id_of_animal")
     private int idanimal;
 
     @Column(name = "data")
     private String data;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="idanimal")
+    private Animal vacc;
+
+    public Vaccination(Animal vacc) {
+        this.vacc = vacc;
+    }
+
 
     public int getIdvaccination() {return idvaccination;}
 
