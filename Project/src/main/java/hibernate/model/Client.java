@@ -12,7 +12,7 @@ public class Client {
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
+    @Column(name = "id", nullable=false)
     private int id;
 
     @Column(name = "fitstname")

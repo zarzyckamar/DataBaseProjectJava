@@ -13,7 +13,7 @@ public class Animal {
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
+    @Column(name="id", nullable =false)
     private int id;
 
     @Column (name = "name")
@@ -28,20 +28,21 @@ public class Animal {
     @Column(name="is_adopted")
     private boolean is_adopted;
 
-  /*  @OneToOne (mappedBy="ANIMALS")
-    private List<Client> client;
-*/
+    @Column (name="volunteer")
+    private Volunteer volunteer;
+
+
     @ManyToOne (fetch=FetchType.LAZY)
-    @JoinColumn(name="id")
+    @JoinColumn(name="id_pupil")
     private Volunteer idPupil;
 
 
-    @OneToMany (mappedBy="vacc")
+    @OneToMany (mappedBy="idanimal")
     private List<Vaccination> vaccinations;
 
 
 
-    public Animal(Volunteer idPupil, List<Vaccination> vaccinations) {
+    public Animal() {
         this.idPupil = idPupil;
         this.vaccinations = vaccinations;
     }

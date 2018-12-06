@@ -27,7 +27,7 @@ public class Volunteer {
     @Column(name = "pupil")
     private int idPupil;
 
-    @OneToMany (mappedBy="idPupil")
+    @OneToMany (mappedBy="volunteer")
     private List<Animal> animals;
 
     public Volunteer(List<Animal> animals) {
