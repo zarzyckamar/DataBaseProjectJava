@@ -18,14 +18,14 @@ public class Vaccination {
     @Column(name = "vaccination_name")
     private String namevaccinaiton;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+   /* @ManyToOne(fetch=FetchType.LAZY)
     @Column(name = "id_of_animal")
-    private Animal idanimal;
+    public Animal idanimal;*/
 
     @Column(name = "data")
     private String data;
 
-
+/*
     public int getIdvaccination() {return idvaccination;}
 
     public void setIdvaccination(int idvaccination) {this.idvaccination = idvaccination;}
@@ -40,5 +40,5 @@ public class Vaccination {
 
     public String getData() {return data;}
 
-    public void setData(String data) {this.data = data;}
+    public void setData(String data) {this.data = data;}*/
 }

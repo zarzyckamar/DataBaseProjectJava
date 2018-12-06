@@ -28,24 +28,24 @@ public class Animal {
     @Column(name="is_adopted")
     private boolean is_adopted;
 
-    @Column (name="volunteer")
-    private Volunteer volunteer;
+  /*  @Column (name="volunteer")
+    private Volunteer volunteer;*/
 
 
-    @ManyToOne (fetch=FetchType.LAZY)
+  /*  @ManyToOne (fetch=FetchType.LAZY)
     @JoinColumn(name="id_pupil")
-    private Volunteer idPupil;
+    private Volunteer idPupil;*/
 
 
-    @OneToMany (mappedBy="idanimal")
-    private List<Vaccination> vaccinations;
+   /* @OneToMany (mappedBy="idanimal")
+    public List<Vaccination> vaccinations;*/
 
 
 
-    public Animal() {
+  /*  public Animal() {
         this.idPupil = idPupil;
         this.vaccinations = vaccinations;
-    }
+    }*/
 
     public int getId() {
         return id;

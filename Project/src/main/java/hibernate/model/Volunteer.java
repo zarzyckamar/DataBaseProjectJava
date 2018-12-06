@@ -27,12 +27,12 @@ public class Volunteer {
     @Column(name = "pupil")
     private int idPupil;
 
-    @OneToMany (mappedBy="volunteer")
+   /* @OneToMany (mappedBy="volunteer")
     private List<Animal> animals;
 
     public Volunteer(List<Animal> animals) {
         this.animals = animals;
-    }
+    }*/
 
     public int getId() {return id;}
 
