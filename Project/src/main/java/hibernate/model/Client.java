@@ -7,12 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CLIENTS")
+@Table(name = "CLIENT")
 public class Client {
 
     @Id
-    @GeneratedValue
-    @Column(name = "id", nullable=false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", unique = true)
     private int id;
 
     @Column(name = "fitstname")
@@ -27,35 +27,69 @@ public class Client {
     @Column(name = "streetname")
     private String street;
 
+    public int getId() {
+        return id;
+    }
+
+    public Client(String firstName, String lastName, String city, String street) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.city = city;
+        this.street = street;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setFirstName(String firstName) { this.firstName = firstName;   }
+    public String getStreet() {
+        return street;
+    }
 
-    public void setLastName(String lastName) { this.lastName = lastName; }
-
-    public void setCity(String city) { this.city = city;}
-
-    public void setStreet(String street) { this.street = street;}
-
-    public int getId() {
-        return id;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getCity() {
         return city;
     }
 
-    public String getStreet() {
-        return street;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getAllInformation()
+    {
+        return id + " " + firstName + " " + lastName + " " + city + " " + street;
+    }
+
+    public String getPoznanPeople() { return id + " " + firstName + " " + lastName;}
+
+    public Client() {}
+
+    public static Client copyClient(Client cli) {
+        Client person = new Client();
+        person.setId(cli.getId());
+        person.setFirstName(cli.getFirstName());
+        person.setLastName(cli.getLastName());
+        person.setCity(cli.getCity());
+        person.setStreet(cli.getStreet());
+        return person;
     }
 }

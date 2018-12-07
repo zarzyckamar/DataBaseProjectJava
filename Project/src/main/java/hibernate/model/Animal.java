@@ -8,19 +8,19 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "ANIMALS")
+@Table(name = "ANIMAL")
 public class Animal {
 
     @Id
-    @GeneratedValue
-    @Column(name="id", nullable =false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", unique = true)
     private int id;
 
     @Column (name = "name")
     private String nameAnimals;
 
-    @Column (name = "race")
-    private String race;
+    @Column (name = "type")
+    private String type;
 
     @Column(name="age")
     private int age;
@@ -28,66 +28,78 @@ public class Animal {
     @Column(name="is_adopted")
     private boolean is_adopted;
 
-  /*  @Column (name="volunteer")
-    private Volunteer volunteer;*/
+    @ManyToOne (fetch=FetchType.LAZY)
+    @JoinColumn(name="volunteer")
+    private Volunteer volunteer;
 
+    @OneToMany (mappedBy="animal")
+    private List<Vaccination> vaccinations;
 
-  /*  @ManyToOne (fetch=FetchType.LAZY)
-    @JoinColumn(name="id_pupil")
-    private Volunteer idPupil;*/
-
-
-   /* @OneToMany (mappedBy="idanimal")
-    public List<Vaccination> vaccinations;*/
-
-
-
-  /*  public Animal() {
-        this.idPupil = idPupil;
-        this.vaccinations = vaccinations;
-    }*/
-
-    public int getId() {
-        return id;
-    }
-
-    public String getNameAnimals() {
-        return nameAnimals;
-    }
-
-    public String getRace() {
-        return race;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public boolean isIs_adopted() {
-        return is_adopted;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setNameAnimals(String nameAnimals) {
+    public Animal(String nameAnimals, String type, boolean is_adopted, int age) {
         this.nameAnimals = nameAnimals;
-    }
-
-    public void setRace(String race) {
-        this.race = race;
-    }
-
-    public void setAge(int age) {
+        this.type = type;
+        this.is_adopted = is_adopted;
         this.age = age;
+    }
+
+    public String getAllInf()
+    {
+        return id + " " + nameAnimals + " " + type + " " + is_adopted + " " + volunteer.getAllInf();
+    }
+    public List<Vaccination> getVaccinations() {
+        return vaccinations;
+    }
+
+    public void setVaccinations(List<Vaccination> vaccinations) {
+        this.vaccinations = vaccinations;
+    }
+
+    public Volunteer getVolunteer() {
+        return volunteer;
+    }
+
+    public void setVolunteer(Volunteer volunteer) {
+        this.volunteer = volunteer;
+    }
+
+    public boolean is_adopted() {
+        return is_adopted;
     }
 
     public void setIs_adopted(boolean is_adopted) {
         this.is_adopted = is_adopted;
     }
 
+    public int getAge() {
+        return age;
+    }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String race) {
+        this.type = race;
+    }
+
+    public String getNameAnimals() {
+        return nameAnimals;
+    }
+
+    public void setNameAnimals(String nameAnimals) {
+        this.nameAnimals = nameAnimals;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
 

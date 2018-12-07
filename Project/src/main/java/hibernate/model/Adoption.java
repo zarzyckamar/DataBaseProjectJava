@@ -1,6 +1,8 @@
 package hibernate.model;
 
 
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,27 +18,52 @@ public class Adoption {
     private int numberOfAdoption;
 
     @Column (name = "adoption_data")
-    private char dataOfAdoption;
+    private DateTime dataOfAdoption;
 
-    @Column (name = "client_id")
-    private int idclient;
 
-    @Column(name="animal_id")
-    private int idanimal;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="idanimal", referencedColumnName = "id")
+    Animal animal;
 
-    public int getNumberOfAdoption() {return numberOfAdoption;}
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="idclient", referencedColumnName = "id")
+    Client client;
 
-    public void setNumberOfAdoption(int numberOfAdoption) {this.numberOfAdoption = numberOfAdoption;}
+    public Adoption(DateTime dataOfAdoption, Animal animal, Client client) {
+        this.dataOfAdoption = dataOfAdoption;
+        this.animal = animal;
+        this.client = client;
+    }
 
-    public char getDataOfAdoption() {return dataOfAdoption;}
+    public int getNumberOfAdoption() {
+        return numberOfAdoption;
+    }
 
-    public void setDataOfAdoption(char dataOfAdoption) {this.dataOfAdoption = dataOfAdoption;}
+    public void setNumberOfAdoption(int numberOfAdoption) {
+        this.numberOfAdoption = numberOfAdoption;
+    }
 
-    public int getIdclient() {return idclient;}
+    public Client getClient() {
+        return client;
+    }
 
-    public void setIdclient(int idclient) {this.idclient = idclient;}
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
-    public int getIdanimal() {return idanimal;}
+    public Animal getAnimal() {
+        return animal;
+    }
 
-    public void setIdanimal(int idanimal) {this.idanimal = idanimal;}
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
+    }
+
+    public DateTime getDataOfAdoption() {
+        return dataOfAdoption;
+    }
+
+    public void setDataOfAdoption(DateTime dataOfAdoption) {
+        this.dataOfAdoption = dataOfAdoption;
+    }
 }
