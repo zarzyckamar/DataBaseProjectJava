@@ -1,6 +1,8 @@
 package hibernate.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -30,10 +32,19 @@ public class Vaccination {
         return data;
     }
 
+    @JsonIgnore
     public Vaccination(String namevaccinaiton, Animal animal, String data) {
         this.namevaccinaiton = namevaccinaiton;
         this.animal = animal;
         this.data = data;
+    }
+
+    public Vaccination(String namevaccinaiton,Animal animal, String data, int idvaccination)
+    {
+        this.namevaccinaiton = namevaccinaiton;
+        this.animal = animal;
+        this.data = data;
+        this.idvaccination = idvaccination;
     }
 
     public Animal getAnimal() {

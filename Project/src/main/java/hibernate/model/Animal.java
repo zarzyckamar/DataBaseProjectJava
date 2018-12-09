@@ -1,6 +1,8 @@
 package hibernate.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -35,13 +37,23 @@ public class Animal {
     @OneToMany (mappedBy="animal")
     private List<Vaccination> vaccinations;
 
+
     public Animal(String nameAnimals, String type, boolean is_adopted, int age) {
         this.nameAnimals = nameAnimals;
         this.type = type;
         this.is_adopted = is_adopted;
         this.age = age;
     }
+    public Animal (String nameAnimals, String type, boolean is_adopted, int age,int id) {
+        this.id=id;
+        this.nameAnimals = nameAnimals;
+        this.type = type;
+        this.is_adopted = is_adopted;
+        this.age = age;
+    }
 
+
+    @JsonIgnore
     public String getAllInf()
     {
         return id + " " + nameAnimals + " " + type + " " + is_adopted + " " + volunteer.getAllInf();

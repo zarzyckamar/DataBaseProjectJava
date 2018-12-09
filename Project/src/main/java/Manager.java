@@ -1,7 +1,6 @@
 import hibernate.model.*;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
-import hibernate.queries.Queries;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -45,8 +44,8 @@ class Manager {
             animal3.setVolunteer(vol2);
 
 
-            Client client1 = new Client("Kamil", "Pyrek", "Czêstochowa", "ul.Zwycieska");
-            Client client2 = new Client("Ola", "Zarzycka", "Boles³awiec", "ul.Garncarska");
+            Client client1 = new Client("Kamil", "Pyrek", "Czestochowa", "ul.Zwycieska");
+            Client client2 = new Client("Ola", "Zarzycka", "Boleslawiec", "ul.Garncarska");
             Client client3 = new Client("Stefan", "Grzyb", "Poznan", "ul.Slowianska");
             Client client4 = new Client("Malwina", "Chudzinka", "Poznan", "ul.Grochowska");
             entityManager.persist(client1);
@@ -58,12 +57,14 @@ class Manager {
             Vaccination vac2 = new Vaccination("bordetella", animal3, "2018-07-21");
             entityManager.persist(vac1);
             entityManager.persist(vac2);
+
+            Adoption adoption1 =new Adoption("2017-07-23", animal3, client3);
+            entityManager.persist(adoption1);
+
             //  DateTime date1 = new DateTime();
             // DateTime date1 = DateTime.Now;
-        /*    DateTime dt = new DateTime("2004-12-13T21:39:45.618-08:00");
+          //  DateTime dt = new DateTime("2004-12-13T21:39:45.618-08:00");
 
-            Adoption adoption1 = new Adoption(dt, animal1, client1);
-            entityManager.persist(adoption1);*/
 
 
             ///QUERIES\\\\\
@@ -73,17 +74,6 @@ class Manager {
             getPersonFromPoznan();
             getAllAnimalByPage();
 
-         /*   for (int i = 1; i < 101; i++) {
-                entityManager.persist(Client.copyClient(client1));
-            }
-            entityManager.flush();
-            entityManager.getTransaction().commit();
-
-            entityManager.getTransaction().begin();
-            Queries query = new Queries(entityManager);
-            List<Client> resultByPage = query.getAllClientByPage(1);
-            resultByPage = query.getAllClientByPage(2);
-            entityManager.getTransaction().commit();*/
 
             entityManager.flush();
             entityManager.getTransaction().commit();

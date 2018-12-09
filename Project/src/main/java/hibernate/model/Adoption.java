@@ -1,6 +1,7 @@
 package hibernate.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
@@ -18,7 +19,7 @@ public class Adoption {
     private int numberOfAdoption;
 
     @Column (name = "adoption_data")
-    private DateTime dataOfAdoption;
+    private String dataOfAdoption;
 
 
     @OneToOne(cascade = CascadeType.PERSIST)
@@ -29,10 +30,18 @@ public class Adoption {
     @JoinColumn(name="idclient", referencedColumnName = "id")
     Client client;
 
-    public Adoption(DateTime dataOfAdoption, Animal animal, Client client) {
+    @JsonIgnore
+    public Adoption(String dataOfAdoption, Animal animal, Client client) {
         this.dataOfAdoption = dataOfAdoption;
         this.animal = animal;
         this.client = client;
+    }
+
+    public Adoption(String dataOfAdoption, Animal animal, Client client, int id) {
+        this.dataOfAdoption = dataOfAdoption;
+        this.animal = animal;
+        this.client = client;
+        this.numberOfAdoption=id;
     }
 
     public int getNumberOfAdoption() {
@@ -59,11 +68,8 @@ public class Adoption {
         this.animal = animal;
     }
 
-    public DateTime getDataOfAdoption() {
-        return dataOfAdoption;
-    }
 
-    public void setDataOfAdoption(DateTime dataOfAdoption) {
+    public void setDataOfAdoption(String dataOfAdoption) {
         this.dataOfAdoption = dataOfAdoption;
     }
 }
