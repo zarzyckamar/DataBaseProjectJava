@@ -18,7 +18,7 @@ public class Client {
     @Column(name = "fitstname")
     private String firstName;
 
-    @Column(name = "lastname")
+    @Column(name = "lastname", nullable = false)
     private String lastName;
 
     @Column(name = "city")

@@ -1,6 +1,7 @@
 package hibernate.serialization;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import hibernate.model.*;
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,9 +54,9 @@ public class ModelObjectCreator {
         clients.add(cli4);
 
 
-        Animal ani1 = new Animal( "Falafel", "dog", false, 5,1);
-        Animal ani2 = new Animal("PrincessCarolyn", "cat", false, 2,2);
-        Animal ani3 = new Animal("Tyran", "dog", true, 7,3);
+        Animal ani1 = new Animal("Falafel","dog", false,1,1);
+       Animal ani2 = new Animal("PrincessCarolyn", "cat", false, 2,2);
+       Animal ani3 = new Animal("Tyran", "dog", true, 7,3);
 
         animals = new ArrayList<Animal>();
         animals.add(ani1);
@@ -78,8 +79,8 @@ public class ModelObjectCreator {
         vaccinations.add(vac1);
         vaccinations.add(vac2);
 
-        Adoption ad1 =new Adoption("2017-07-23", ani3, cli3,8);
-        Adoption ad2 = new Adoption("2016-04-21", ani1, cli2,9);
+        Adoption ad1 =new Adoption(DateTime.now(), ani3, cli3,8);
+        Adoption ad2 = new Adoption(DateTime.now(), ani1, cli2,9);
 
         adoptions = new ArrayList<Adoption>();
         adoptions.add(ad1);

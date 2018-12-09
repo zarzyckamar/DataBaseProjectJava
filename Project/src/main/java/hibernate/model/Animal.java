@@ -30,6 +30,7 @@ public class Animal {
     @Column(name="is_adopted")
     private boolean is_adopted;
 
+    @JsonIgnore
     @ManyToOne (fetch=FetchType.LAZY)
     @JoinColumn(name="volunteer")
     private Volunteer volunteer;
@@ -37,13 +38,15 @@ public class Animal {
     @OneToMany (mappedBy="animal")
     private List<Vaccination> vaccinations;
 
-
+    @JsonIgnore
     public Animal(String nameAnimals, String type, boolean is_adopted, int age) {
         this.nameAnimals = nameAnimals;
         this.type = type;
         this.is_adopted = is_adopted;
         this.age = age;
     }
+
+    @JsonIgnore
     public Animal (String nameAnimals, String type, boolean is_adopted, int age,int id) {
         this.id=id;
         this.nameAnimals = nameAnimals;
@@ -57,6 +60,11 @@ public class Animal {
     public String getAllInf()
     {
         return id + " " + nameAnimals + " " + type + " " + is_adopted + " " + volunteer.getAllInf();
+    }
+
+    public String getAllInf2()
+    {
+        return id + " " + nameAnimals + " " + type + " " + is_adopted;
     }
     public List<Vaccination> getVaccinations() {
         return vaccinations;

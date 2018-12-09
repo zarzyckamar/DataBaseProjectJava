@@ -47,6 +47,10 @@ public class Vaccination {
         this.idvaccination = idvaccination;
     }
 
+    public String getAllInformation()
+    {
+        return namevaccinaiton + " " + animal + " " + data + " " + idvaccination;}
+
     public Animal getAnimal() {
         return animal;
     }

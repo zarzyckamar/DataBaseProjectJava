@@ -58,7 +58,7 @@ class Manager {
             entityManager.persist(vac1);
             entityManager.persist(vac2);
 
-            Adoption adoption1 =new Adoption("2017-07-23", animal3, client3);
+            Adoption adoption1 =new Adoption(DateTime.now(), animal3, client3);
             entityManager.persist(adoption1);
 
             //  DateTime date1 = new DateTime();

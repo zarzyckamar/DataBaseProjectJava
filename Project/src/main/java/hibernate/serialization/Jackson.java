@@ -15,6 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Jackson {
+    private static List<Client> deserializedClient;
+    private static List<Animal> deserializedAnimal;
+    private static List<Volunteer> deserializedVolunteer;
+    private static List<Vaccination> deserializedVaccination;
+    private static List<Adoption> desarializedAdoption;
 
     final static Logger logger = Logger.getLogger(Jackson.class);
 
@@ -35,7 +40,7 @@ public class Jackson {
         //Serialize to file and string
         mapper.writeValue(new File("clients." + fileSuffix), clients);
         //ToString Serial
-/*        List<Client> deserializedEmployee = mapper.readValue(
+     /*   List<Client> deserializedEmployee = mapper.readValue(
                 new File("clients." + fileSuffix), new TypeReference<List<Client>>() { } );*/
     }
 
@@ -55,7 +60,7 @@ public class Jackson {
         mapper.writeValue(new File("animals." + fileSuffix), animals);
 
         //ToString Serial
-     /*   List<Client> deserializedEmployee2 = mapper.readValue(
+        /*List<Client> deserializedEmployee2 = mapper.readValue(
                 new File("animals." + fileSuffix), new TypeReference<List<Animal>>() {
                 });*/
     }
@@ -119,18 +124,7 @@ public class Jackson {
                 });*/
     }
 
-   public static void init() throws IOException {
-        ObjectMapper jsonMapper = new ObjectMapper();
-        ObjectMapper xmlMapper = new XmlMapper();
-        jsonMapper.registerModule(new JodaModule());
-        //serializeDemo(jsonMapper, "json");
-        //serializeDemo(xmlMapper, "xml");
-     //   deserialize(jsonMapper);
 
-        serializeJson(jsonMapper);
-        serializeXML(xmlMapper);
-
-    }
 
     public static void serializeJson(ObjectMapper jsonMapper) throws IOException {
         serializeClient(jsonMapper, "json");
@@ -148,28 +142,40 @@ public class Jackson {
         serializeVolunteer(xmlMapper, "xml");
     }
 
-   /* public static void deserialize(ObjectMapper mapper) throws IOException {
+    public static void deserialize(ObjectMapper mapper) throws IOException {
 
         String fileSuffix = "json";
-        String fileSuffix2 = "xml";
-        deserializedPerson = mapper.readValue(new File("/home/kamil/IdeaProjects/JsonXmlDatabasePPR/person." + fileSuffix), new TypeReference<List<Person>>() { } );
-        System.out.println(deserializedPerson);
-        deserializedCourse = mapper.readValue(new File("/home/kamil/IdeaProjects/JsonXmlDatabasePPR/course." + fileSuffix), new TypeReference<List<Course>>() { } );
-        deserializedSpeaker = mapper.readValue(new File("/home/kamil/IdeaProjects/JsonXmlDatabasePPR/speakers." + fileSuffix), new TypeReference<List<Speaker>>() { } );
-        deserializedAddress = mapper.readValue(new File("/home/kamil/IdeaProjects/JsonXmlDatabasePPR/address." + fileSuffix), new TypeReference<List<Address>>() { } );
-        deserializedOpinion = mapper.readValue(new File("/home/kamil/IdeaProjects/JsonXmlDatabasePPR/opinion." + fileSuffix), new TypeReference<List<Opinion>>() { } );
-        deserializedPerson2 = mapper.readValue(new File("/home/kamil/IdeaProjects/JsonXmlDatabasePPR/person." + fileSuffix), new TypeReference<List<Person>>() { } );
-        deserializedCourse2 = mapper.readValue(new File("/home/kamil/IdeaProjects/JsonXmlDatabasePPR/course." + fileSuffix), new TypeReference<List<Course>>() { } );
-        deserializedSpeaker2 = mapper.readValue(new File("/home/kamil/IdeaProjects/JsonXmlDatabasePPR/speakers." + fileSuffix), new TypeReference<List<Speaker>>() { } );
-        deserializedAddress2 = mapper.readValue(new File("/home/kamil/IdeaProjects/JsonXmlDatabasePPR/address." + fileSuffix), new TypeReference<List<Address>>() { } );
-        deserializedOpinion2 = mapper.readValue(new File("/home/kamil/IdeaProjects/JsonXmlDatabasePPR/opinion." + fileSuffix), new TypeReference<List<Opinion>>() { } );
+        System.out.println("\n\nOdpalam DESERIAIZACJA");
+        deserializedClient = mapper.readValue(new File("/Users/User/IdeaProjects/DataBaseProjectJava/clients." + fileSuffix), new TypeReference<List<Client>>() { } );
+        for(int i=0; i<deserializedClient.size(); i++) System.out.println(deserializedClient.get(i).getAllInformation());
+       /* deserializedAnimal = mapper.readValue(new File("/Users/User/IdeaProjects/DataBaseProjectJava/animals." + fileSuffix), new TypeReference<List<Animal>>() { } );
+        for(int i=0; i<deserializedAnimal.size(); i++) System.out.println(deserializedAnimal.get(i).getAllInf());
+        deserializedVolunteer = mapper.readValue(new File("/Users/User/IdeaProjects/DataBaseProjectJava/volunteers." + fileSuffix), new TypeReference<List<Volunteer>>() { } );
+        for(int i=0; i<deserializedVolunteer.size(); i++) System.out.println(deserializedVolunteer.get(i).getAllInf());
+        deserializedVaccination = mapper.readValue(new File("/Users/User/IdeaProjects/DataBaseProjectJava/vaccination." + fileSuffix), new TypeReference<List<Vaccination>>() { } );
+        for(int i=0; i<deserializedVaccination.size(); i++) System.out.println(deserializedVaccination.get(i).getAllInformation());
+        desarializedAdoption = mapper.readValue(new File("/Users/User/IdeaProjects/DataBaseProjectJava/adoption." + fileSuffix), new TypeReference<List<Adoption>>() { } );
+        for(int i=0; i<desarializedAdoption.size(); i++) System.out.println(deserializedVaccination.get(i).getAllInformation());*/
+    }
 
-    }*/
-   public static void main(String[] args) throws IOException {
 
-       init();
+    public static void init() throws IOException {
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ObjectMapper xmlMapper = new XmlMapper();
+        jsonMapper.registerModule(new JodaModule());
+        xmlMapper.registerModule(new JodaModule());
 
-   }
+        deserialize(jsonMapper);
+
+        serializeJson(jsonMapper);
+        serializeXML(xmlMapper);
+
+    }
+    public static void main(String[] args) throws IOException {
+
+        init();
+
+    }
 }
 
 
